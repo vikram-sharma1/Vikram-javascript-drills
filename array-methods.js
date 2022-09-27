@@ -18,12 +18,25 @@
 
 const justiceLeague = ['Robin', 'Batman', 'Wonder Woman', 'Flash', 'Aquaman'];
 
+    justiceLeague.shift()                       // removing Robin from the start
+    justiceLeague.push('Green Lantern')         // adding Green Lantern at the last
+    justiceLeague.unshift('Superman')           // adding Superman at the start
+
+
+// console.log(justiceLeague)
+
 /* 
   Problem 2: Middle Earth
   In our list of Characters from Middle Earth remove sauraman. He's a traitor.
 */
 
 const middleEarth = ['Frodo', 'Samwise', 'Gandalf', 'Sauraman', 'Treebeard'];
+
+    middleEarth.splice(3 ,1)
+
+//    middleEarth.filter((name)=>name != "Sauraman")            // to use filter method we have to store the data in new array, because filter returns a copy  of                                                           the array & we cannot reasign the data because the data is been assigned with const variable
+
+    console.log(middleEarth)
 
 /* 
   Problem 3: Numbers
@@ -32,7 +45,9 @@ const middleEarth = ['Frodo', 'Samwise', 'Gandalf', 'Sauraman', 'Treebeard'];
 
 const numbers = [2, 3, 4, 5, 6];
 
-const numsByTen = numbers; // finish this.
+const numsByTen = numbers.map((num) => num * 10)
+
+// console.log(numsByTen)
 
 /* 
   Problem 4: Filter Friends
@@ -50,8 +65,11 @@ const friends = [
   { name: 'Rachel', gender: 'M' }
 ];
 
-const femaleFriends = friends; // finish this
-const male = friends; // finish this
+const femaleFriends = friends.filter((singleList)=> singleList.gender == 'F')               // filtering female friends
+const male = friends.filter((singleList)=> singleList.gender == 'M')                        // filtering male friends
+
+// console.log(femaleFriends)
+// console.log(male)
 
 module.exports = {
   justiceLeague,
