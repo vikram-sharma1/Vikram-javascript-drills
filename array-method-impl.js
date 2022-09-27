@@ -29,7 +29,8 @@ function each(elements, cb) {
 
 each(items, cbEach)
 
-// console.log('---------------------------------------------------------------------------------------------');
+// -----------------------------------------------------------------------------
+
 
 
 function map(elements, cb) {
@@ -51,8 +52,7 @@ let mapArr = map(items, (element, i, arrRef) => element)
 console.log(mapArr)
 
 
-// console.log('---------------------------------------------------------------------------------------------');
-
+// -----------------------------------------------------------------------------
 
 const cbReduce = (initialValue, current) => initialValue + current;
 
@@ -70,7 +70,8 @@ function reduce(elements, cb, startingValue) {
 const reduceArr = reduce(items, cbReduce, 0)
 
 console.log(reduceArr);
-// console.log('---------------------------------------------------------------------------------------------');
+// -----------------------------------------------------------------------------
+
 
 function cbFind(a) {
     if (!a) {
@@ -89,8 +90,8 @@ function find(elements, cb) {
 
 find(items, cbFind)
 
+// -----------------------------------------------------------------------------
 
-// console.log('---------------------------------------------------------------------------------------------');
 
 function filter(elements, cb) {
 
@@ -113,8 +114,7 @@ let filterAns = filter(items, (element, i, arrRef) => element % 2 == 0)
 console.log(filterAns);
 
 
-// console.log('---------------------------------------------------------------------------------------------');
-
+// -----------------------------------------------------------------------------
 
 const nestedArray = [1, [2], [[3]], [[[4]]]]; // use this to test 'flatten'
 
