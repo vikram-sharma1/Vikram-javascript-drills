@@ -28,6 +28,24 @@
 
 // code greet here.
 
+
+function greet(name){
+    console.log(name)
+}
+
+function greetCaller(callbackFunc){
+
+    let name = 'First callback function'
+
+    callbackFunc(name)
+
+}
+
+greetCaller(greet)
+
+console.log('-------------------------------------------------------');
+
+
 /*
   Problem 2: forEach
   use .forEach to loop over the simpsons list and alert each name passed back to your anonymous callback to the console. 
@@ -36,6 +54,16 @@ const simpsons = ['Marge', 'Lisa', 'Homer', 'Bart', 'Maggie'];
 
 // code for `forEach` goes here
 
+simpsons.forEach((name) => {
+     greet(name)
+});
+
+
+console.log('-------------------------------------------------------');
+
+
+
+
 /*
   Problem 3: every
   create a function called `every` that takes in an array and a callback as it's parameters
@@ -43,7 +71,13 @@ const simpsons = ['Marge', 'Lisa', 'Homer', 'Bart', 'Maggie'];
   When you're done, make sure that you finish the code inside of `every` and ensure it works the way it's supposed to
 */
 
-every(simpsons, (/* don't forget your items */) => {
+const every = (simpsons, () => {
   // fill this in.
   // log each item that comes back to the console.
+
+  for(let name of simpsons){
+    greet(name)
+  }
 });
+
+every(simpsons)
