@@ -12,7 +12,10 @@
 */
 
 const student = { name: 'Jonas', age: '12', gender: 'M', role: 'Receiver' };
-const studentKeys = Object; // finish this.
+const studentKeys = Object.keys(student); // finish this
+console.log(studentKeys);
+
+
 
 /* 
   Problem 2: Giver Info
@@ -20,7 +23,8 @@ const studentKeys = Object; // finish this.
   return an array of an Objects values
 */
 
-const studentValues = Object; // finish this.
+const studentValues = Object.values(student); // finish this.
+console.log(studentValues);
 
 /* 
   Problem 3: Giver Info
@@ -31,4 +35,10 @@ const studentValues = Object; // finish this.
   next: select that list and iterate over it using `.forEach` simply log the name of each char in the list;
 */
 
-const listOfChars = student.characters; // finish this.
+// const listOfChars = student.characters; // finish this.
+
+student.characters = ['Lily', 'Mother', 'Father', 'Caleb', 'Asher']
+
+student.characters.forEach(char => {
+    console.log(char)
+});
