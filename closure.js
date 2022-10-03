@@ -19,12 +19,12 @@ function counterFactory() {
     // The returned function should only allow `cb` to be invoked `n` times.
     // Returning null is acceptable if cb can't be returned
 
-    let callCount = 0;
+    let Count = 0;
       return (...args) => {
-        if (callCount === n){
+        if (Count === n){
           return null
         } 
-        callCount++;
+        Count++;
         return cb(...args);
       };
   }
@@ -36,4 +36,17 @@ function counterFactory() {
     // If the returned function is invoked with arguments that it has already seen
     // then it should return the cached result and not invoke `cb` again.
     // `cb` should only ever be invoked once for a given set of arguments.
+
+    const cache = {}
+
+    return (args) => {
+      if(Object.prototype.hasOwnProperty.call(cache, args)){
+        return cache[args]
+      }
+
+      cache[args] = cb(args)
+
+      return(cache[args])
+    }
+
   }
