@@ -35,29 +35,24 @@ fs.mkdir(`./Task${dirRandomNum}`, (err) => {
     }
 
     fs.readdir(`./Task${dirRandomNum}`, (err, files) => {
-      if(err){
+      if (err) {
         console.log(err)
         return
-      }
-      else{
+      } else {
         console.log(files)
 
         files.forEach((singlefile) => {
-          fs.unlink(`./Task${dirRandomNum}/${singlefile}`, (err)=>{
-            if(err){
+          fs.unlink(`./Task${dirRandomNum}/${singlefile}`, (err) => {
+            if (err) {
               console.log(err)
               return
-            }
-            else{
-              console.log('All files deleted sucessfully');
-              console.log('Task Done');
+            } else {
+              console.log('All files deleted sucessfully')
+              console.log('Task Done')
             }
           })
         })
       }
     })
-
   }
 })
-
-
