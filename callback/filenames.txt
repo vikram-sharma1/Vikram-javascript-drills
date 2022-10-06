@@ -1,1 +1,1 @@
-breakSenLowerCase12.txt    |breakSenLowerCase48.txt    |dataSortedLowerCase48    |upperCase12.txt    |dataSortedLowerCase12    |upperCase48.txt    |
+breakSenLowerCase23.txt upperCase23.txt dataSortedLowerCase23.txt 

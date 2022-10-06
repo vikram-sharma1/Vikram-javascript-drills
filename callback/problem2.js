@@ -55,7 +55,7 @@ fs.readFile('./lipsum.txt', "utf-8", (err, data) => {
                                         // console.log(datainSen)
 
                                             
-                                                fs.appendFile(`./writeContent/dataSortedLowerCase${num}`, datainSen, "utf8", (err)=> {
+                                                fs.appendFile(`./writeContent/dataSortedLowerCase${num}.txt`, datainSen, "utf8", (err)=> {
                                                     if(err){
                                                         console.log(err);
                                                     }else{
@@ -77,17 +77,50 @@ fs.readFile('./lipsum.txt', "utf-8", (err, data) => {
                                 
                                 
                                                                 files.forEach((singleName) => {
-                                                                    fs.appendFile('./filenames.txt', `${singleName}    |` , (err) => {
+                                                                    fs.appendFile('./filenames.txt', `${singleName} ` , (err) => {
                                                                         if(err){
                                                                             console.log(err)
                                                                             return
                                                                         }
+                                                                        else{
+
+                                                                            
+                                                                        }
                                                                     })
                                 
                                                                 })
+                                                                
                                                             }
+
+                                                            fs.readFile('./filenames.txt', "utf-8", (err, data) => {
+                                                                if(err){
+                                                                    console.log(err)
+                                                                    return
+                                                                }
+                                                                else{
+                                                                    let deleteList = data.split(' ').slice(0,-1)
+                                                                    // console.log(deleteList)
+                                                                    deleteList.forEach((singleFile) => {
+                                                                        fs.unlink(`./writeContent/${singleFile}`, (err) => {
+                                                                          if (err) {
+                                                                            console.log('line',err  )
+                                                                            return;
+                                                                          }
+                                                                          else{
+                                                                            console.log('All clear')
+                                                                          }
+                                                                        });
+                                                                      });
+                                                                }
+                                                            })
                                 
                                                         })
+
+                                                       
+
+
+
+
                                                     }
                                                 })
 
@@ -107,4 +140,5 @@ fs.readFile('./lipsum.txt', "utf-8", (err, data) => {
 
     }
 })
+
 
