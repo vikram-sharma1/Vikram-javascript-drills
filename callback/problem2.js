@@ -104,7 +104,7 @@ fs.readFile('./lipsum.txt', 'utf-8', (err, data) => {
                                     let deleteList = data
                                       .split(' ')
                                       .slice(0, -1)
-                                    // console.log(deleteList)
+                                    console.log(deleteList)
                                     deleteList.forEach((singleFile) => {
                                       fs.unlink(
                                         `./writeContent/${singleFile}`,
