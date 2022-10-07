@@ -5,10 +5,17 @@ const readFilePromise = fs.readFile('./json/sampleData.json', "utf8")
 
 readFilePromise.then((data)=>{
     const writeFilePromise = fs.writeFile(`./outputContent/copy0.1${randomNum}.txt`,data, "utf8")
-
+    console.log('Copy File has been created')
     return writeFilePromise
 }).then(()=>{
-   return fs.unlink('./json/sampleData.json')
+    
+    const firstFileDelete =  fs.unlink('./json/sampleData.json')
+    console.log('Deleted First file')
+    
+   return firstFileDelete
 }).then(()=>{
-   return fs.unlink(`./outputContent/copy0.1${randomNum}.txt`)
+    const secFileDelete =   fs.unlink(`./outputContent/copy0.1${randomNum}.txt`)
+    console.log('Deleted Second file')
+
+    return secFileDelete
 }).catch(err => console.log(err))
