@@ -1,1 +1,4 @@
-fileUpper.json fileUpperSplitSen.json fileUpperSplitSenSorted.json 
+upperCase.txt
+lowerCase.txt
+sentences.txt
+sort.txt

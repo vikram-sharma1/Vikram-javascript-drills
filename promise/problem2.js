@@ -1,72 +1,73 @@
-const fs = require('fs').promises
+const fs= require("fs").promises
 
-const readFilelipsum = fs.readFile('./json/lipsum.txt', 'utf8')
+//reading file from lipsum.txt
 
-readFilelipsum
-  .then((data) => {
-    // console.log(data)
-    return data
-  }).then((data)=>{
-    data = data.toUpperCase()
-    // console.log(data)
-    fs.writeFile(`./problem2/fileUpper.json`,
-        JSON.stringify(data),
-        'utf-8',
-      )
+const readFile=fs.readFile(`./json/lipsum.txt`,"utf8")
 
-      console.log('File Created in Upper case')
-      return data
+//implementing chaining promices
 
-  }).then((data)=>{
+readFile
+.then((data)=>{
+    console.log("reading is succesfull")
+    return fs.writeFile(`./problem2/upperCase.txt`,data.toUpperCase(),"utf8")
+})
+.then(()=>{
+    console.log("writing into uppercase is done")
+    return fs.writeFile(`./filenames.txt`,"upperCase.txt","utf8")
+})
+.then(()=>{
+    console.log("upperCase.txt name saved in filenames.txt")
+    return fs.readFile(`./problem2/upperCase.txt`,"utf8")
+})
+.then((data)=>{
+    console.log("reading is done from uppercase.txt")
+    return fs.writeFile(`./problem2/lowerCase.txt`,data.toLowerCase(),"utf8")
+})
+.then(()=>{
+    console.log("writing data into lowercase is done")
+    return fs.appendFile(`./filenames.txt`,"\nlowerCase.txt","utf8")
+})
+.then(()=>{
+    console.log("lowerCase.txt name saved in filenames.txt")
+    return fs.readFile(`./problem2/lowerCase.txt`,"utf8")
+})
+.then((data)=>{
+    console.log("reading data from lower case file is done")
+    let promiseArr=data.split(".").map(sen=> fs.appendFile(`./problem2/sentences.txt`,`${sen}.\n`,"utf8"))
+    Promise.all(promiseArr)
+    
+})
+.then(()=>{
+    console.log("saved in sentences.txt")
+    return fs.appendFile(`./filenames.txt`,"\nsentences.txt","utf8")
+})
+.then(()=>{
+    console.log("sentences.txt file name saved in filenames.txt")
+    return fs.readFile(`./problem2/sentences.txt`,"utf8")
+})
+.then((data)=>{
+    console.log("reading data from sentences.txt is done")
+   
+    return fs.writeFile(`./problem2/sort.txt`,data.split("\n").sort().join("\n"),"utf8")
+})
+.then(()=>{
+    console.log("sort.txt file is created")
+    return fs.appendFile(`./filenames.txt`,"\nsort.txt","utf8")
+}).then(()=>{
+    console.log("sort.txt file is saved in filenames.txt")
+    return fs.readFile(`./filenames.txt`,"utf8")
+})
+.then((data)=>{
+    console.log("reading is succesfull from filenames.txt")
+    data = data.split('\n').map((singleName) => {
+      fs.unlink(`./problem2/${singleName}`)
+    });
+    return Promise.all(data)
+})
+.then(()=>{
+    console.log("all files deleted from filenames.txt")
+})
+.catch((err)=>{
+    console.error(err)
+})
 
-    data = data.toLowerCase().split('.').join('\n')
-    // console.log(data);
-
-    fs.writeFile(`./problem2/fileUpperSplitSen.json`,
-        JSON.stringify(data),
-        'utf-8',
-      )
-
-      console.log('File Created in Lower case & seperated in Lines')
-      return data
-
-  }).then((data)=>{
-
-    data = data.split(',').sort().join('.')
-    // console.log(data);
-
-    fs.writeFile(`./problem2/fileUpperSplitSenSorted.json`,
-        JSON.stringify(data),
-        'utf-8',
-      )
-
-      console.log('File Created in Lower case & Sorted')
-
-
-      return
-
-  }).then(()=>{
-    const filesNames = fs.readdir('./problem2')
-    return filesNames
-  }).then((filenames)=>{
-
-        fs.unlink('./filenames.txt')
-
-        filenames.forEach((singleFileName)=>{
-            fs.appendFile('./filenames.txt', `${singleFileName} ` )
-        })
-        console.log('Names of the files has been stored')
-
-        return filenames
-  }).then(()=>{
-        const namestoDelete = fs.readFile('./filenames.txt', "utf8")
-        return namestoDelete
-  }).then((namestoDelete)=>{
-    console.log(namestoDelete);
-        namestoDelete.split(' ').slice(0,-1).forEach((singleName)=>{
-            fs.unlink(`./problem2/${singleName}`)
-        })
-
-        console.log('All File Deleted')
-  })
-  .catch((err) => console.log(err))
